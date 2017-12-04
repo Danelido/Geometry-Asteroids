@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Projectile">
+      <UniqueIdentifier>{b9bfe1a4-e0a5-4ab5-916c-b0afe95eb00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\State">
+      <UniqueIdentifier>{ec0dc1a0-a462-49e5-9dfa-e21492f43247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{85c8af55-61bc-48de-8b20-cd807b1de0b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Player">
+      <UniqueIdentifier>{ca9fcea5-4e38-4c4d-a2ae-0176c1f725d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{4eae6740-dd2c-4e17-b168-361a56928e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Player">
+      <UniqueIdentifier>{1aef59aa-31f5-441a-a81d-4ca46ffed406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{4ae43a6e-c53c-4721-8d04-ed1954db1b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State">
+      <UniqueIdentifier>{51329d58-e37e-4fa6-9ccf-4f8a26df27e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Projectile">
+      <UniqueIdentifier>{cd3ffabf-baed-4773-a9b1-fa30a35ec0c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Obstacle">
+      <UniqueIdentifier>{cb3e4c05-5010-4aa0-a4cb-4942137e079a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Obstacle">
+      <UniqueIdentifier>{6ac70393-79a1-4399-aea4-798aaea13708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Particle">
+      <UniqueIdentifier>{ca01b4ae-1da8-48c8-82f9-a821c8858e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Particle">
+      <UniqueIdentifier>{1ec92467-e036-4857-9868-6916cc8bc8f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ui">
+      <UniqueIdentifier>{54704484-31e7-42f9-b82b-d8777911710d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ui">
+      <UniqueIdentifier>{2ad625f1-5e90-42c4-8cd4-7d108b162d95}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Source Files\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Source Files\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="ObstacleHandler.cpp">
+      <Filter>Source Files\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="StateHandler.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileHandler.cpp">
+      <Filter>Source Files\Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Source Files\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleHandler.cpp">
+      <Filter>Source Files\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomText.cpp">
+      <Filter>Source Files\Ui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Circle.h">
+      <Filter>Header Files\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Header Files\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="ObstacleHandler.h">
+      <Filter>Header Files\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileHandler.h">
+      <Filter>Header Files\Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="StateHandler.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Header Files\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Header Files\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleHandler.h">
+      <Filter>Header Files\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomText.h">
+      <Filter>Header Files\Ui</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
