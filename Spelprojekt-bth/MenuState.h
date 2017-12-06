@@ -13,7 +13,7 @@ public:
 	void input();
 	void update(float dt);
 	void render();
-
+	void updateViewport();
 
 };
 

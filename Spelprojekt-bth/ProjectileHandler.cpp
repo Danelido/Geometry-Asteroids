@@ -75,7 +75,7 @@ bool ProjectileHandler::collisionWithObstacles(int index)
 				this->generateEffect(projectilePosition, 
 					this->projectiles[index].getDirection(),
 					this->obstacleHandler->getArray()[i]->getColor(),
-					3,i);
+					5,i);
 				
 			this->removeProjectile(index);
 			this->obstacleHandler->decreaseLife(i);
@@ -120,7 +120,7 @@ void ProjectileHandler::generateEffect(sf::Vector2f position, sf::Vector2f proje
 
 	for (int i = 0; i < nrOfParticless; i++)
 	{
-		this->particleHandler->addParticle(position, projectileDirection, color, Utility::getRandomNumber(2.f,5.f),0.3f);
+		this->particleHandler->addParticle(position, projectileDirection, color, Utility::getRandomNumber(4.f,7.f),0.3f);
 	}
 }
 

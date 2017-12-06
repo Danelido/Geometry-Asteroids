@@ -108,6 +108,9 @@
     <ClCompile Include="CustomText.cpp">
       <Filter>Source Files\Ui</Filter>
     </ClCompile>
+    <ClCompile Include="CustomButton.cpp">
+      <Filter>Source Files\Ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h">
@@ -162,6 +165,9 @@
       <Filter>Header Files\Particle</Filter>
     </ClInclude>
     <ClInclude Include="CustomText.h">
+      <Filter>Header Files\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomButton.h">
       <Filter>Header Files\Ui</Filter>
     </ClInclude>
   </ItemGroup>

@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="CustomButton.cpp" />
     <ClCompile Include="CustomText.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -141,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="CustomButton.h" />
     <ClInclude Include="CustomText.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Math.h" />

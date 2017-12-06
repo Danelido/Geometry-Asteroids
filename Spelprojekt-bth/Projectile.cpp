@@ -4,7 +4,7 @@ Projectile::Projectile()
 {
 	this->color = sf::Color::Yellow;
 	
-	this->speed = 1000.f;
+	this->speed = 1200.f;
 	this->radius = 4.f;
 
 	this->shape.setRadius(this->radius);

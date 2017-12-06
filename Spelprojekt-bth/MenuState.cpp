@@ -1,11 +1,12 @@
 #include "MenuState.h"
-#include <iostream>
 #include "Game.h"
 #include "PlayState.h"
 
+#include <iostream>
+
 MenuState::MenuState(Game * game) : State(game)
 {
-	std::cout << "MenuState" << std::endl;
+	
 }
 
 MenuState::~MenuState()
@@ -25,5 +26,9 @@ void MenuState::update(float dt)
 }
 
 void MenuState::render()
+{
+}
+
+void MenuState::updateViewport()
 {
 }

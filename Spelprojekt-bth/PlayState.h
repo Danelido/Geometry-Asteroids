@@ -18,7 +18,6 @@ private:
 	
 	CustomText playerScoreText;
 	CustomText destroyedObstaclesText;
-	CustomText particleCount;
 	CustomText gameInfo;
 
 	float gameCountdown;
@@ -28,6 +27,8 @@ private:
 	float fireTimer;
 	bool isShooting;
 	
+	bool canAddEnemies;
+
 	bool isPaused;
 	void unPauseState();
 	void pauseState();

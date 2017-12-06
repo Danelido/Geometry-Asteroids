@@ -2,7 +2,9 @@
 #include "Game.h"
 #include "Math.h"
 #include "Utility.h"
+#include "Math.h"
 #include <iostream>
+
 
 
 PlayState::PlayState(Game * game) :	State(game)
@@ -19,10 +21,11 @@ PlayState::PlayState(Game * game) :	State(game)
 	
 	this->playerScoreText.setPosition(sf::Vector2f(10.f, 10.f));
 	this->destroyedObstaclesText.setPosition(sf::Vector2f(10.f, 40.f));
-	this->particleCount.setPosition(sf::Vector2f(10, 120));
+	this->gameInfo.setTextSize(35);
 	this->gameInfo.centerTextOnScreen(this->game->getWindow()->getSize());
 	this->gameCountdown = 3.f;
 	this->startCountdown = false;
+	this->canAddEnemies = true;
 }	
 
 PlayState::~PlayState()
@@ -57,6 +60,7 @@ void PlayState::input()
 		this->isShooting = false;
 	}
 
+	// Start game
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 	{
 		if (this->startCountdown == false && this->gameCountdown > 0.0f)
@@ -83,11 +87,8 @@ void PlayState::update(float dt)
 			this->playLogic(dt);
 		}
 
-
 		this->playerScoreText.setText("Score: " + std::to_string(this->player->getScore()));
 		this->destroyedObstaclesText.setText("Destroyed objects: " + std::to_string(this->obstacleHandler->getNrOfDestroyedObstacles()));
-		//this->particleCount.setText("Active particles: " + std::to_string(this->particleHandler->getNrOfParticles()));
-
 	}
 }
 
@@ -100,7 +101,8 @@ void PlayState::render()
 
 	this->game->getWindow()->draw(this->playerScoreText.getDrawable());
 	this->game->getWindow()->draw(this->destroyedObstaclesText.getDrawable());
-	this->game->getWindow()->draw(this->particleCount.getDrawable());
+	
+	// TODO: use a bool if the gameinfo text should be drawed or not
 	if (this->gameCountdown > 0.0f)
 	{
 		this->game->getWindow()->draw(this->gameInfo.getDrawable());
@@ -112,6 +114,9 @@ void PlayState::updateViewport()
 	this->player->updateViewport(this->game->getWindow()->getSize());
 	this->obstacleHandler->updateViewport(this->game->getWindow()->getSize());
 	this->projectionHandler->updateViewport(this->game->getWindow()->getSize());
+
+	// reposition game info text to the center of the screen
+	this->gameInfo.centerTextOnScreen(this->game->getWindow()->getSize());
 }
 
 void PlayState::handleShooting(float dt)
@@ -141,13 +146,25 @@ void PlayState::handleShooting(float dt)
 
 void PlayState::playLogic(float dt)
 {
-	// TODO: Fix this!
 	this->player->incrementScore(dt);
+
 	if (this->player->getScore() % 30 == 0)
 	{
-		this->obstacleHandler->addCircleObstacle();
-		this->obstacleHandler->addTriangleObject();
-		this->obstacleHandler->addRectangleObstacle();
+		if (this->canAddEnemies)
+		{
+			this->obstacleHandler->addCircleObstacle();
+			this->obstacleHandler->addTriangleObject();
+			this->obstacleHandler->addRectangleObstacle();
+			
+			this->canAddEnemies = false;
+		}
+	}
+	else
+	{
+		if (!this->canAddEnemies)
+		{
+			this->canAddEnemies = true;
+		}
 	}
 }
 
@@ -159,7 +176,7 @@ void PlayState::handleGameinfo(float dt)
 	}
 	else if (this->gameCountdown >= 0.0f && this->startCountdown)
 	{
-		this->gameInfo.setText(std::to_string(this->gameCountdown));
+		this->gameInfo.setText("Game starts in " + std::to_string(static_cast<int>(ceil(this->gameCountdown))));
 		this->gameCountdown -= dt;
 	}
 	else
