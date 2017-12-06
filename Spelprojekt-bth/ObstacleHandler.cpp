@@ -185,7 +185,7 @@ void ObstacleHandler::makeEffect(int index)
 	
 	for (int j = 0; j < 25; j++)
 	{
-		this->particleHandler->addParticleWithRandomDirection(this->obstacles[index]->getPosition(), this->obstacles[index]->getColor(),
+		this->particleHandler->spawnParticleWithRandomDirection(this->obstacles[index]->getPosition(), this->obstacles[index]->getColor(),
 			Utility::getRandomNumber(5.f, 10.f), 0.5f);
 	}
 }

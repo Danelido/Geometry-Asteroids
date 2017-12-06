@@ -199,30 +199,34 @@ void Player::movementLogic(float dt)
 
 void Player::movementEffect(sf::Vector2f playerDirection)
 {
-	if (playerDirection.x < 0.0f)
+	for (int i = 0; i < 10; i++)
 	{
-		playerDirection.x = Utility::getRandomNumber(10.f, 90.f);
-	}
-	else
-	{
-		playerDirection.x = Utility::getRandomNumber(-90.f, -10.f);
-	}
+		if (playerDirection.x < 0.0f)
+		{
+			playerDirection.x = Utility::getRandomNumber(10.f, 90.f);
+		}
+		else
+		{
+			playerDirection.x = Utility::getRandomNumber(-90.f, -10.f);
+		}
 
-	if (playerDirection.y < 0.0f)
-	{
-		playerDirection.y = Utility::getRandomNumber(10.f, 90.f);
-	}
-	else
-	{
-		playerDirection.y = Utility::getRandomNumber(-90.f, -10.f);
-	}
-	playerDirection /= 90.f;
+		if (playerDirection.y < 0.0f)
+		{
+			playerDirection.y = Utility::getRandomNumber(10.f, 90.f);
+		}
+		else
+		{
+			playerDirection.y = Utility::getRandomNumber(-90.f, -10.f);
+		}
+		playerDirection /= 90.f;
 
-		this->particleHandler->addParticle(
-			(position - ((this->size / 2.f) * this->dirVec)) , 
+		this->particleHandler->spawnParticle(
+			(position - ((this->size / 2.f - 5.f) * this->dirVec)),
 			playerDirection,
-			sf::Color(Utility::getRandomNumber(100, 255), Utility::getRandomNumber(100, 255), Utility::getRandomNumber(100, 255),255),
-			Utility::getRandomNumber(4.f, 6.f),0.2f);
+			sf::Color(Utility::getRandomNumber(100, 255), Utility::getRandomNumber(100, 255), Utility::getRandomNumber(100, 255), 255),
+			1.5f, 0.5f);
+
+	}
 }
 
 void Player::render(sf::RenderWindow* window)

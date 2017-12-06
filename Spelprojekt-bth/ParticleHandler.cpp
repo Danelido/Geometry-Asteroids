@@ -1,9 +1,13 @@
 #include "ParticleHandler.h"
 #include "Utility.h"
 
-ParticleHandler::ParticleHandler()
+ParticleHandler::ParticleHandler() 
 {
 	this->nrOfActiveParticles = 0;
+	this->vertices.setPrimitiveType(sf::Points);
+	this->vertices.resize(this->MAX_PARTICLES);
+
+	info.setPosition(sf::Vector2f(300, 10));
 }
 
 ParticleHandler::~ParticleHandler()
@@ -14,33 +18,70 @@ void ParticleHandler::update(float dt)
 {
 	for (int i = 0; i < this->nrOfActiveParticles; i++)
 	{
-		this->particles[i].update(dt);
-		this->checkIfDead(i);
+		Particle& p = this->particles[i];
+		
+		p.lifetime -= dt;
+
+		if (p.lifetime <= 0.0f)
+		{
+			this->vertices[i].color.a = 0;
+			swap(this->particles[i], this->particles[this->nrOfActiveParticles - 1]);
+			swap(this->vertices[i], this->vertices[this->nrOfActiveParticles - 1]);
+			this->nrOfActiveParticles--;
+		}
+		else 
+		{
+			this->vertices[i].position += p.dirVec * p.speed;
+			//float alphaRatio = p.lifetime / p.initialLifetime;
+			this->vertices[i].color.a = (sf::Uint8) (255 * (p.lifetime / p.initialLifetime));
+		}
 	}
+
+	info.setText("[Active Particles: " + std::to_string(this->nrOfActiveParticles) + "]   [VertexCount: " + std::to_string(this->vertices.getVertexCount()) + "]");
+
 }
 
 void ParticleHandler::render(sf::RenderWindow * window)
 {
-	for (int i = 0; i < this->nrOfActiveParticles; i++)
-	{
-		this->particles[i].render(window);
-	}
+
+	window->draw(this->vertices);
+	window->draw(info.getDrawable());
 }
 
-void ParticleHandler::addParticle(sf::Vector2f position, sf::Vector2f dirVec, sf::Color color, float speed, float lifetime)
+void ParticleHandler::spawnParticle(sf::Vector2f position, sf::Vector2f dirVec, sf::Color color, float speed, float lifetime)
 {
 	if (this->nrOfActiveParticles < this->MAX_PARTICLES)
 	{
-		this->particles[this->nrOfActiveParticles++].activate(position, dirVec, color, speed, lifetime);
+		this->particles[this->nrOfActiveParticles].position = position;
+		this->particles[this->nrOfActiveParticles].dirVec = dirVec;
+		this->particles[this->nrOfActiveParticles].color = color;
+		this->particles[this->nrOfActiveParticles].speed = speed;
+		this->particles[this->nrOfActiveParticles].lifetime = lifetime;
+		this->particles[this->nrOfActiveParticles].initialLifetime = lifetime;
+
+		this->vertices[this->nrOfActiveParticles].position = position;
+		this->vertices[this->nrOfActiveParticles].color = color;
+
+		this->nrOfActiveParticles++;
 	}
+	
 }
 
-void ParticleHandler::addParticleWithRandomDirection(sf::Vector2f position, sf::Color color, float speed, float lifetime)
+void ParticleHandler::spawnParticleWithRandomDirection(sf::Vector2f position, sf::Color color, float speed, float lifetime)
 {
 	if (this->nrOfActiveParticles < this->MAX_PARTICLES)
 	{
+		this->particles[this->nrOfActiveParticles].position = position;
+		this->particles[this->nrOfActiveParticles].dirVec = (Utility::getRandomVector(-100.f, 100.f) / 100.f);
+		this->particles[this->nrOfActiveParticles].color = color;
+		this->particles[this->nrOfActiveParticles].speed = speed;
+		this->particles[this->nrOfActiveParticles].lifetime = lifetime;
+		this->particles[this->nrOfActiveParticles].initialLifetime = lifetime;
 
-		this->particles[this->nrOfActiveParticles++].activate(position, (Utility::getRandomVector(-100.f,100.f) / 100.f), color, speed,lifetime);
+		this->vertices[this->nrOfActiveParticles].position = position;
+		this->vertices[this->nrOfActiveParticles].color = color;
+
+		this->nrOfActiveParticles++;
 	}
 }
 
@@ -51,14 +92,17 @@ int ParticleHandler::getNrOfParticles() const
 
 void ParticleHandler::checkIfDead(int index)
 {
-	if (!this->particles[index].isActive())
+	if (this->particles[index].lifetime <= 0.0f)
 	{
-		swap(particles[index], particles[--this->nrOfActiveParticles]);
+		swap(this->particles[index], this->particles[this->nrOfActiveParticles - 1]);
+		swap(this->vertices[index], this->vertices[this->nrOfActiveParticles - 1]);
+		this->nrOfActiveParticles--;
 	}
 }
-void ParticleHandler::swap(Particle& p1, Particle& p2)
+template<typename T>
+void ParticleHandler::swap(T& p1, T& p2)
 {
-	Particle temp = p1;
+	T temp = p1;
 	p1 = p2;
 	p2 = temp;
 }

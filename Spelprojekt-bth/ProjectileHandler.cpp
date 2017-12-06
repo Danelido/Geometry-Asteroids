@@ -75,7 +75,7 @@ bool ProjectileHandler::collisionWithObstacles(int index)
 				this->generateEffect(projectilePosition, 
 					this->projectiles[index].getDirection(),
 					this->obstacleHandler->getArray()[i]->getColor(),
-					5,i);
+					50,i);
 				
 			this->removeProjectile(index);
 			this->obstacleHandler->decreaseLife(i);
@@ -99,28 +99,34 @@ void ProjectileHandler::checkIfOutOfBounds(int index)
 
 void ProjectileHandler::generateEffect(sf::Vector2f position, sf::Vector2f projectileDirection, sf::Color color, int nrOfParticless, int obstacleIndex)
 {
-	if (projectileDirection.x < 0.0f)
-	{
-		projectileDirection.x = Utility::getRandomNumber(10.f, 90.f);
-	}
-	else
-	{
-		projectileDirection.x = Utility::getRandomNumber(-90.f, -10.f);
-	}
-
-	if (projectileDirection.y < 0.0f)
-	{
-		projectileDirection.y = Utility::getRandomNumber(10.f, 90.f);
-	}
-	else
-	{
-		projectileDirection.y = Utility::getRandomNumber(-90.f, -10.f);
-	}
-	projectileDirection /= 90.f;
+	// Todo: fix more accurate spread
+	float lowerRange = 30.f;
+	float upperRange = 70.f;
 
 	for (int i = 0; i < nrOfParticless; i++)
 	{
-		this->particleHandler->addParticle(position, projectileDirection, color, Utility::getRandomNumber(4.f,7.f),0.3f);
+
+		if (projectileDirection.x < 0.0f)
+		{
+			projectileDirection.x = Utility::getRandomNumber(lowerRange, upperRange);
+		}
+		else
+		{
+			projectileDirection.x = Utility::getRandomNumber(-upperRange, -lowerRange);
+		}
+
+		if (projectileDirection.y < 0.0f)
+		{
+			projectileDirection.y = Utility::getRandomNumber(lowerRange, upperRange);
+		}
+		else
+		{
+			projectileDirection.y = Utility::getRandomNumber(-upperRange, -lowerRange);
+		}
+		projectileDirection /= upperRange;
+		
+		
+			this->particleHandler->spawnParticle(position, projectileDirection, color, Utility::getRandomNumber(3.f,7.f),0.45f);
 	}
 }
 
