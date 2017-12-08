@@ -29,6 +29,11 @@ void Game::changeState(State * newState)
 	this->stateHandler.changeState(newState);
 }
 
+void Game::quit()
+{
+	this->window->close();
+}
+
 void Game::runGameLoop()
 {
 	sf::Clock delta;
@@ -59,17 +64,20 @@ void Game::input()
 	sf::Event evnt;
 	while (this->window->pollEvent(evnt))
 	{
-		if (evnt.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		if (this->window->hasFocus())
 		{
-			this->window->close();
-		}
-		if (evnt.type == sf::Event::Resized)
-		{
-			this->window->setView(sf::View(sf::FloatRect(0.f, 0.f, static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y))));
-			this->stateHandler.updateViewport();
-		}
+			if (evnt.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				this->quit();
+			}
+			if (evnt.type == sf::Event::Resized)
+			{
+				this->window->setView(sf::View(sf::FloatRect(0.f, 0.f, static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y))));
+				this->stateHandler.updateViewport();
+			}
 
-		this->stateHandler.input();
+			this->stateHandler.input();
+		}
 	}
 }
 

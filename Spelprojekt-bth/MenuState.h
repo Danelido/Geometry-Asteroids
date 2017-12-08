@@ -1,11 +1,18 @@
 #ifndef MENUSTATE_H
 #define MENUSTATE_H
 #include "State.h"
+#include "CustomButton.h"
+#include "ParticleHandler.h"
 
 class MenuState : public State
 {
 private:
+	ParticleHandler* particleHandler;
+	CustomButton* playButton;
+	CustomButton* scoreButton;
+	CustomButton* exitButton;
 
+	sf::Vector2i mousePos;
 public:
 	MenuState(Game* game);
 	~MenuState();

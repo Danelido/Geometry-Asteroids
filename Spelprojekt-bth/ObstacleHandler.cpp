@@ -69,6 +69,12 @@ void ObstacleHandler::addTriangleObject()
 	}
 }
 
+//DEBUG & TEST
+void ObstacleHandler::addDummy()
+{
+	this->obstacles[this->nrOfObstacles++] = new Rectangle(40.f, 80.f, this->windowSize,true);
+}
+
 bool ObstacleHandler::collisionWithPlayer()
 {
 	for (int i = 0; i < this->nrOfObstacles; i++)

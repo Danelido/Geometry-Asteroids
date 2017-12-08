@@ -3,6 +3,8 @@
 #include "ParticleHandler.h"
 #include "Math.h"
 #include "Utility.h"
+#include <iostream>
+
 
 ProjectileHandler::ProjectileHandler(ObstacleHandler* obstacleHandler, ParticleHandler* particleHandler, sf::Vector2u windowSize)
 {
@@ -75,7 +77,7 @@ bool ProjectileHandler::collisionWithObstacles(int index)
 				this->generateEffect(projectilePosition, 
 					this->projectiles[index].getDirection(),
 					this->obstacleHandler->getArray()[i]->getColor(),
-					50,i);
+					25,i);
 				
 			this->removeProjectile(index);
 			this->obstacleHandler->decreaseLife(i);
@@ -99,34 +101,25 @@ void ProjectileHandler::checkIfOutOfBounds(int index)
 
 void ProjectileHandler::generateEffect(sf::Vector2f position, sf::Vector2f projectileDirection, sf::Color color, int nrOfParticless, int obstacleIndex)
 {
-	// Todo: fix more accurate spread
-	float lowerRange = 30.f;
-	float upperRange = 70.f;
+	//// Todo: fix more accurate spread
+	float RangeforX = ((1.f - abs(projectileDirection.x)) * 100.f) / 2.f;
+	float RangeforY = ((1.f - abs(projectileDirection.y)) * 100.f) / 2.f;
+	
+	//Reverse it
+	projectileDirection *= -1.f;
 
 	for (int i = 0; i < nrOfParticless; i++)
 	{
-
-		if (projectileDirection.x < 0.0f)
-		{
-			projectileDirection.x = Utility::getRandomNumber(lowerRange, upperRange);
-		}
-		else
-		{
-			projectileDirection.x = Utility::getRandomNumber(-upperRange, -lowerRange);
-		}
-
-		if (projectileDirection.y < 0.0f)
-		{
-			projectileDirection.y = Utility::getRandomNumber(lowerRange, upperRange);
-		}
-		else
-		{
-			projectileDirection.y = Utility::getRandomNumber(-upperRange, -lowerRange);
-		}
-		projectileDirection /= upperRange;
-		
-		
-			this->particleHandler->spawnParticle(position, projectileDirection, color, Utility::getRandomNumber(3.f,7.f),0.45f);
+		//Randomize x & y-direction within the range limit
+		float spreadX = Utility::getRandomNumber(-RangeforX, RangeforX);
+		float spreadY = Utility::getRandomNumber(-RangeforY, RangeforY);
+		//Normalize it
+		spreadX /= 100.f;
+		spreadY /= 100.f;
+		//Add it
+		projectileDirection += sf::Vector2f(spreadX, spreadY);
+		//Spawn a particle
+		this->particleHandler->spawnParticle(position, projectileDirection, color, Utility::getRandomNumber(1.f,4.f),0.60f);
 	}
 }
 

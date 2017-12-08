@@ -48,9 +48,10 @@ namespace CustomMath
 	template<typename T>
 	inline bool intersection(const sf::Vector2<T>& posOfElement1,T sizeOfElement1, const sf::Vector2<T>& posOfElement2, T sizeOfElement2)
 	{	
-		T distance = getDistance(posOfElement1,posOfElement2);
+		sf::Vector2<T> difference = getDifference(posOfElement1,posOfElement2);
+		T intersectionRadius = ( sizeOfElement1 / (T)2 ) + ( sizeOfElement2 / (T)2 );
 
-		if (distance < ((sizeOfElement1 / 2) + (sizeOfElement2 / 2)))
+		if (abs(difference.x) <= intersectionRadius && abs(difference.y) <= intersectionRadius)
 		{
 			return true;
 		}

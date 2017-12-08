@@ -1,13 +1,12 @@
 #include "Rectangle.h"
 
-Rectangle::Rectangle(float minSize, float maxSize, sf::Vector2u windowSize)
-	: Obstacle(minSize,maxSize,windowSize)
+Rectangle::Rectangle(float minSize, float maxSize, sf::Vector2u windowSize, bool dummy)
+	: Obstacle(minSize,maxSize,windowSize, dummy)
 {
 	this->length = this->size;
 	this->rectangleShape.setSize(sf::Vector2f(this->length, this->length));
 	this->rectangleShape.setOrigin(this->length  / 2.f, this->length / 2.f);
 	this->rectangleShape.setFillColor(this->color);
-	
 }
 
 Rectangle::~Rectangle()

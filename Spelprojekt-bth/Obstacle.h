@@ -23,8 +23,10 @@ protected:
 	
 	void calculateDirection();
 
+	bool dummy;
+	void addDummy();
 public:
-	Obstacle(float minSize, float maxSize, sf::Vector2u windowSize);
+	Obstacle(float minSize, float maxSize, sf::Vector2u windowSize, bool dummy = false);
 	virtual ~Obstacle();
 	virtual void update(float dt) = 0;
 	virtual void render(sf::RenderWindow* window) = 0;

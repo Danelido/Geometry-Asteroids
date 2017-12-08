@@ -25,6 +25,7 @@ PlayState::PlayState(Game * game) :	State(game)
 	this->gameInfo.centerTextOnScreen(this->game->getWindow()->getSize());
 	this->gameCountdown = 3.f;
 	this->startCountdown = false;
+	this->obstacleHandler->addDummy();
 	this->canAddEnemies = true;
 }	
 
@@ -63,10 +64,13 @@ void PlayState::input()
 	// Start game
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 	{
-		if (this->startCountdown == false && this->gameCountdown > 0.0f)
+		/*if (this->startCountdown == false && this->gameCountdown > 0.0f)
 		{
 			this->startCountdown = true;
-		}
+		}*/
+		
+		
+
 	}
 }
 
@@ -105,7 +109,7 @@ void PlayState::render()
 	// TODO: use a bool if the gameinfo text should be drawed or not
 	if (this->gameCountdown > 0.0f)
 	{
-		this->game->getWindow()->draw(this->gameInfo.getDrawable());
+		//this->game->getWindow()->draw(this->gameInfo.getDrawable());
 	}
 }
 

@@ -79,6 +79,16 @@ void CustomText::centerTextOnScreen(sf::Vector2u windowSize)
 	}
 }
 
+void CustomText::centerWithinBounds(sf::FloatRect bounds)
+{
+	sf::Vector2f centerPoint = sf::Vector2f(bounds.left + bounds.width / 2.f, bounds.top + bounds.height / 2.f);
+
+	this->text->setPosition(
+		centerPoint.x - round(this->text->getGlobalBounds().width / 2),
+		centerPoint.y - round(this->text->getGlobalBounds().height / 2));
+	
+}
+
 sf::Vector2f CustomText::getSize() const
 {
 	return sf::Vector2f(this->text->getGlobalBounds().width, this->text->getGlobalBounds().height);

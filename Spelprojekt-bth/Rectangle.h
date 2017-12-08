@@ -10,7 +10,7 @@ private:
 	float length;
 
 public:
-	Rectangle(float minSize, float maxSize, sf::Vector2u windowSize);
+	Rectangle(float minSize, float maxSize, sf::Vector2u windowSize, bool dummy = false);
 	~Rectangle();
 
 	void update(float dt) override;

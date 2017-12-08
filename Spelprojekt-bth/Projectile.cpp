@@ -4,7 +4,7 @@ Projectile::Projectile()
 {
 	this->color = sf::Color::Yellow;
 	
-	this->speed = 1200.f;
+	this->speed = 1350.f;
 	this->radius = 4.f;
 
 	this->shape.setRadius(this->radius);
@@ -56,7 +56,7 @@ sf::Color Projectile::getColor() const
 
 float Projectile::getSize() const
 {
-	return this->radius*2.f;
+	return (this->radius * 2.f);
 }
 
 bool Projectile::isActive() const

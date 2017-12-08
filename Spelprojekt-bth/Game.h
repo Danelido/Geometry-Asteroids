@@ -25,6 +25,7 @@ public:
 	void pushState(State* newState);
 	void popCurrentState();
 	void changeState(State* newState);
+	void quit();
 	void runGameLoop();
 
 	sf::RenderWindow* getWindow() const;

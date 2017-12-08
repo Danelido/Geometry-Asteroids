@@ -22,6 +22,7 @@ public:
 	void setText(std::string string);
 	void setTextSize(unsigned int textSize);
 	void centerTextOnScreen(sf::Vector2u windowSize);
+	void centerWithinBounds(sf::FloatRect bounds);
 	sf::Vector2f getSize() const;
 	sf::Text& getDrawable() const;
 
