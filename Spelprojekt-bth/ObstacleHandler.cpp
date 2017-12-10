@@ -69,12 +69,6 @@ void ObstacleHandler::addTriangleObject()
 	}
 }
 
-//DEBUG & TEST
-void ObstacleHandler::addDummy()
-{
-	this->obstacles[this->nrOfObstacles++] = new Rectangle(40.f, 80.f, this->windowSize,true);
-}
-
 bool ObstacleHandler::collisionWithPlayer()
 {
 	for (int i = 0; i < this->nrOfObstacles; i++)
@@ -189,10 +183,10 @@ void ObstacleHandler::checkIfOutOfBounds(int index)
 void ObstacleHandler::makeEffect(int index)
 {
 	
-	for (int j = 0; j < 25; j++)
+	for (int j = 0; j < 100; j++)
 	{
 		this->particleHandler->spawnParticleWithRandomDirection(this->obstacles[index]->getPosition(), this->obstacles[index]->getColor(),
-			Utility::getRandomNumber(5.f, 10.f), 0.5f);
+			Utility::getRandomNumber(3.f, 10.f), 1.5f);
 	}
 }
 

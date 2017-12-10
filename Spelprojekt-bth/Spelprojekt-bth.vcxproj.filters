@@ -111,6 +111,9 @@
     <ClCompile Include="CustomButton.cpp">
       <Filter>Source Files\Ui</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreState.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="CustomButton.h">
       <Filter>Header Files\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreState.h">
+      <Filter>Header Files\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

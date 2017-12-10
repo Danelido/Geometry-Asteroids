@@ -199,33 +199,27 @@ void Player::movementLogic(float dt)
 
 void Player::movementEffect(sf::Vector2f playerDirection)
 {
+	sf::Vector2f reversedDir = playerDirection * -1.f;
+	float RangeforX = ((1.f - abs(reversedDir.x)) * 100.f) / 4.f;
+	float RangeforY = ((1.f - abs(reversedDir.y)) * 100.f) / 4.f;
+
 	for (int i = 0; i < 10; i++)
 	{
-		if (playerDirection.x < 0.0f)
-		{
-			playerDirection.x = Utility::getRandomNumber(10.f, 90.f);
-		}
-		else
-		{
-			playerDirection.x = Utility::getRandomNumber(-90.f, -10.f);
-		}
-
-		if (playerDirection.y < 0.0f)
-		{
-			playerDirection.y = Utility::getRandomNumber(10.f, 90.f);
-		}
-		else
-		{
-			playerDirection.y = Utility::getRandomNumber(-90.f, -10.f);
-		}
-		playerDirection /= 90.f;
-
+		//Randomize x & y-direction within the range limit
+		float spreadX = Utility::getRandomNumber(-RangeforX, RangeforX);
+		float spreadY = Utility::getRandomNumber(-RangeforY, RangeforY);
+		//Normalize it
+		spreadX /= 100.f;
+		spreadY /= 100.f;
+		//Add it
+		reversedDir += sf::Vector2f(spreadX, spreadY);
+		//Spawn a particle
 		this->particleHandler->spawnParticle(
 			(position - ((this->size / 2.f - 5.f) * this->dirVec)),
-			playerDirection,
-			sf::Color(Utility::getRandomNumber(100, 255), Utility::getRandomNumber(100, 255), Utility::getRandomNumber(100, 255), 255),
-			1.5f, 0.5f);
-
+			reversedDir,
+			sf::Color::White,
+			Utility::getRandomNumber(1.f, 4.f),
+			0.60f);
 	}
 }
 

@@ -8,6 +8,7 @@ class MenuState : public State
 {
 private:
 	ParticleHandler* particleHandler;
+	CustomText Title;
 	CustomButton* playButton;
 	CustomButton* scoreButton;
 	CustomButton* exitButton;

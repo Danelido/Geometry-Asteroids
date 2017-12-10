@@ -101,7 +101,6 @@ void ProjectileHandler::checkIfOutOfBounds(int index)
 
 void ProjectileHandler::generateEffect(sf::Vector2f position, sf::Vector2f projectileDirection, sf::Color color, int nrOfParticless, int obstacleIndex)
 {
-	//// Todo: fix more accurate spread
 	float RangeforX = ((1.f - abs(projectileDirection.x)) * 100.f) / 2.f;
 	float RangeforY = ((1.f - abs(projectileDirection.y)) * 100.f) / 2.f;
 	

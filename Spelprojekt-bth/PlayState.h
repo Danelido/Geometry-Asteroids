@@ -29,9 +29,6 @@ private:
 	
 	bool canAddEnemies;
 
-	bool isPaused;
-	void unPauseState();
-	void pauseState();
 	void handleShooting(float dt);
 	void playLogic(float dt);
 	void handleGameinfo(float dt);

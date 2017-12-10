@@ -6,8 +6,12 @@ ParticleHandler::ParticleHandler()
 	this->nrOfActiveParticles = 0;
 	this->vertices.setPrimitiveType(sf::Points);
 	this->vertices.resize(this->MAX_PARTICLES);
-
-	info.setPosition(sf::Vector2f(300, 10));
+	this->debug = false;
+	
+	if (this->debug)
+	{
+		info.setPosition(sf::Vector2f(300, 10));
+	}
 }
 
 ParticleHandler::~ParticleHandler()
@@ -36,16 +40,20 @@ void ParticleHandler::update(float dt)
 			this->vertices[i].color.a = (sf::Uint8) (255 * (p.lifetime / p.initialLifetime));
 		}
 	}
-
-	info.setText("[Active Particles: " + std::to_string(this->nrOfActiveParticles) + "]   [VertexCount: " + std::to_string(this->vertices.getVertexCount()) + "]");
-
+	if (this->debug)
+	{
+		info.setText("[Active Particles: " + std::to_string(this->nrOfActiveParticles) + "]   [VertexCount: " + std::to_string(this->vertices.getVertexCount()) + "]");
+	}
 }
 
 void ParticleHandler::render(sf::RenderWindow * window)
 {
 
 	window->draw(this->vertices);
-	window->draw(info.getDrawable());
+	if (this->debug)
+	{
+		window->draw(info.getDrawable());
+	}
 }
 
 void ParticleHandler::spawnParticle(sf::Vector2f position, sf::Vector2f dirVec, sf::Color color, float speed, float lifetime)

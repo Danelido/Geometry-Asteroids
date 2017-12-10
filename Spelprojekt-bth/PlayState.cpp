@@ -3,9 +3,8 @@
 #include "Math.h"
 #include "Utility.h"
 #include "Math.h"
+#include "ScoreState.h"
 #include <iostream>
-
-
 
 PlayState::PlayState(Game * game) :	State(game)
 {
@@ -14,18 +13,18 @@ PlayState::PlayState(Game * game) :	State(game)
 	this->player->setPosition((sf::Vector2f)this->game->getWindow()->getSize()/2.f);
 	this->obstacleHandler = new ObstacleHandler(this->player, this->particleHandler, this->game->getWindow()->getSize());
 	this->projectionHandler = new ProjectileHandler(this->obstacleHandler, this->particleHandler, this->game->getWindow()->getSize());
-	this->isPaused = false;
 	this->isShooting = false;
 	this->fireRate = 0.045f; // less = faster shooting | more = slower shooting
 	this->fireTimer = 0.0f;
 	
 	this->playerScoreText.setPosition(sf::Vector2f(10.f, 10.f));
 	this->destroyedObstaclesText.setPosition(sf::Vector2f(10.f, 40.f));
+	this->gameInfo.setText("Press H to start!");
 	this->gameInfo.setTextSize(35);
-	this->gameInfo.centerTextOnScreen(this->game->getWindow()->getSize());
+	this->gameInfo.centerWithinBounds(sf::FloatRect(0.f, this->game->getWindow()->getSize().y / 2.f - 250,
+		(float)this->game->getWindow()->getSize().x, this->game->getWindow()->getSize().y / 2.f - 100));
 	this->gameCountdown = 3.f;
 	this->startCountdown = false;
-	this->obstacleHandler->addDummy();
 	this->canAddEnemies = true;
 }	
 
@@ -64,20 +63,15 @@ void PlayState::input()
 	// Start game
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 	{
-		/*if (this->startCountdown == false && this->gameCountdown > 0.0f)
+		if (this->startCountdown == false && this->gameCountdown > 0.0f)
 		{
 			this->startCountdown = true;
-		}*/
-		
-		
-
+		}
 	}
 }
 
 void PlayState::update(float dt)
 {	
-	if (!this->isPaused)
-	{
 		this->handleShooting(dt);
 		this->obstacleHandler->update(dt);
 		this->projectionHandler->update(dt);
@@ -93,7 +87,11 @@ void PlayState::update(float dt)
 
 		this->playerScoreText.setText("Score: " + std::to_string(this->player->getScore()));
 		this->destroyedObstaclesText.setText("Destroyed objects: " + std::to_string(this->obstacleHandler->getNrOfDestroyedObstacles()));
-	}
+
+		if (this->player->getHealth() <= 0)
+		{
+			this->game->changeState(new ScoreState(this->game,this->player->getScore()));
+		}
 }
 
 void PlayState::render()
@@ -109,7 +107,7 @@ void PlayState::render()
 	// TODO: use a bool if the gameinfo text should be drawed or not
 	if (this->gameCountdown > 0.0f)
 	{
-		//this->game->getWindow()->draw(this->gameInfo.getDrawable());
+		this->game->getWindow()->draw(this->gameInfo.getDrawable());
 	}
 }
 
@@ -120,7 +118,8 @@ void PlayState::updateViewport()
 	this->projectionHandler->updateViewport(this->game->getWindow()->getSize());
 
 	// reposition game info text to the center of the screen
-	this->gameInfo.centerTextOnScreen(this->game->getWindow()->getSize());
+	this->gameInfo.centerWithinBounds(sf::FloatRect(0.f, this->game->getWindow()->getSize().y / 2.f - 250,
+		(float)this->game->getWindow()->getSize().x, this->game->getWindow()->getSize().y / 2.f - 100));
 }
 
 void PlayState::handleShooting(float dt)
@@ -174,27 +173,17 @@ void PlayState::playLogic(float dt)
 
 void PlayState::handleGameinfo(float dt)
 {
-	if (this->gameCountdown > 0.0f && !this->startCountdown)
-	{
-		this->gameInfo.setText("Press H to start!");
-	}
-	else if (this->gameCountdown >= 0.0f && this->startCountdown)
+	if (this->gameCountdown >= 0.0f && this->startCountdown)
 	{
 		this->gameInfo.setText("Game starts in " + std::to_string(static_cast<int>(ceil(this->gameCountdown))));
+		this->gameInfo.centerWithinBounds(sf::FloatRect(0.f, this->game->getWindow()->getSize().y / 2.f - 250,
+			(float)this->game->getWindow()->getSize().x, this->game->getWindow()->getSize().y / 2.f - 100));
 		this->gameCountdown -= dt;
 	}
-	else
+	else if(this->gameCountdown <= 0 && this->startCountdown)
 	{
 		this->gameCountdown = 0.0f;
 		this->startCountdown = false;
 	}
 }
 
-void PlayState::unPauseState()
-{
-	this->isPaused = false;
-}
-void PlayState::pauseState()
-{
-	this->isPaused = true;
-}

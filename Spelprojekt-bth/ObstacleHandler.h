@@ -36,9 +36,6 @@ public:
 	void addRectangleObstacle();
 	void addTriangleObject();
 
-	//DEBUG & TEST
-	void addDummy();
-
 	void decreaseLife(int index);
 	void removeAllObstacles();
 

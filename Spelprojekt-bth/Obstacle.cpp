@@ -2,36 +2,17 @@
 #include "Utility.h"
 #include "Math.h"
 
-Obstacle::Obstacle(float minSize, float maxSize, sf::Vector2u windowSize, bool dummy)
+Obstacle::Obstacle(float minSize, float maxSize, sf::Vector2u windowSize)
 {
 	this->minSize = minSize;
 	this->maxSize = maxSize;
 	this->windowSize = windowSize;
-	this->dummy = dummy;
 	
-	if (!this->dummy) {
-		this->reset();
-	}
-	else {
-		addDummy();
-	}
+	this->reset();
 }
 
 Obstacle::~Obstacle()
 {
-}
-
-void Obstacle::addDummy()
-{
-	this->originalSize = Utility::getRandomNumber(this->minSize, this->maxSize);
-	this->size = this->originalSize;
-	this->health = (this->size / this->maxSize) * 100.f; // if the object is small it got less life
-	this->color = sf::Color(Utility::getRandomNumber(0, 255), Utility::getRandomNumber(0, 255), Utility::getRandomNumber(0, 255), 255);
-	this->angle = 0.f;
-	this->rotationSpeed = 0.f;
-	this->speed = Utility::getRandomNumber(75.f, 150.f);
-
-	this->position = sf::Vector2f(static_cast<float>(this->windowSize.x / 2.f) - 200.f, static_cast<float>(this->windowSize.y / 2.f));
 }
 
 void Obstacle::reset()
@@ -94,13 +75,11 @@ void Obstacle::setPosition(sf::Vector2f position)
 
 void Obstacle::setHealth(float health)
 {
-	if(!this->dummy)
 	this->health = health;
 }
 
 void Obstacle::setSize(float size)
 {
-	if (!this->dummy)
 	this->size = size;
 }
 

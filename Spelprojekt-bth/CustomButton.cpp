@@ -194,7 +194,7 @@ void CustomButton::makeEffect(float dt)
 		this->shape.setSize(this->size);
 		this->shape.setPosition(this->position);
 
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 8; i++)
 		{
 
 			int spawnpoint = Utility::getRandomNumber(1, 4);

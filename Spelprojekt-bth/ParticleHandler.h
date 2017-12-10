@@ -17,7 +17,6 @@ private:
 		float initialLifetime = 0.f;
 		float speed = 0.f;
 	};
-
 private:
 	int nrOfActiveParticles;
 	static const int MAX_PARTICLES = 2000;
@@ -28,9 +27,11 @@ private:
 	float speed;
 
 	void checkIfDead(int index);
+	
 	template<typename T>
 	void swap(T& p1, T& p2);
 
+	bool debug;
 	CustomText info;
 
 public:

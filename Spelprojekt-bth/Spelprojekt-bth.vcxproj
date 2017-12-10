@@ -137,6 +137,7 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileHandler.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="ScoreState.cpp" />
     <ClCompile Include="StateHandler.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileHandler.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="ScoreState.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateHandler.h" />
     <ClInclude Include="Triangle.h" />

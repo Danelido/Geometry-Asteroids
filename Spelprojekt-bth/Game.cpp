@@ -72,6 +72,14 @@ void Game::input()
 			}
 			if (evnt.type == sf::Event::Resized)
 			{
+				if (this->window->getSize().x <= 800)
+				{
+					this->window->setSize(sf::Vector2u(800, this->window->getSize().y));
+				}
+				if (this->window->getSize().y <= 600)
+				{
+					this->window->setSize(sf::Vector2u(this->window->getSize().x, 600));
+				}
 				this->window->setView(sf::View(sf::FloatRect(0.f, 0.f, static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y))));
 				this->stateHandler.updateViewport();
 			}
