@@ -21,7 +21,6 @@ public:
 	void render();
 
 	void updateViewport();
-
 };
 
 #endif

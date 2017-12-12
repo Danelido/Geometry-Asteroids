@@ -104,7 +104,6 @@ void PlayState::render()
 	this->game->getWindow()->draw(this->playerScoreText.getDrawable());
 	this->game->getWindow()->draw(this->destroyedObstaclesText.getDrawable());
 	
-	// TODO: use a bool if the gameinfo text should be drawed or not
 	if (this->gameCountdown > 0.0f)
 	{
 		this->game->getWindow()->draw(this->gameInfo.getDrawable());

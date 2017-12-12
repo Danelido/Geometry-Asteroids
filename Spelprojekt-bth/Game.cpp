@@ -5,8 +5,7 @@
 Game::Game(unsigned int windowWidth, unsigned int windowHeight, std::string windowTitle)
 {
 	srand(static_cast<unsigned>(time(0)));
-	this->windowTitle = windowTitle;
-	initialize(windowWidth, windowHeight);
+	initialize(windowWidth, windowHeight, windowTitle);
 }
 
 Game::~Game()
@@ -52,10 +51,10 @@ sf::RenderWindow* Game::getWindow() const
 
 //** Private helper functions **\\
 
-void Game::initialize(unsigned int windowWidth, unsigned int windowHeight)
+void Game::initialize(unsigned int windowWidth, unsigned int windowHeight, std::string windowTitle)
 {
 	this->window = new sf::RenderWindow();
-	this->window->create(sf::VideoMode(windowWidth, windowHeight), this->windowTitle);
+	this->window->create(sf::VideoMode(windowWidth, windowHeight), windowTitle);
 	this->window->setFramerateLimit(60);
 }
 

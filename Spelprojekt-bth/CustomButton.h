@@ -16,9 +16,7 @@ private:
 	sf::Vector2f size;
 	sf::Vector2f originalSize;
 	sf::Vector2u windowSize;
-	sf::Vector2f particleSpawnPoint;
-	sf::Vector2f particleDirection;
-
+	
 	bool hovered;
 	bool centerX;
 	bool centerY;

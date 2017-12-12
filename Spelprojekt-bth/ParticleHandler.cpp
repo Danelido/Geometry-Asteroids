@@ -98,15 +98,7 @@ int ParticleHandler::getNrOfParticles() const
 	return this->nrOfActiveParticles;
 }
 
-void ParticleHandler::checkIfDead(int index)
-{
-	if (this->particles[index].lifetime <= 0.0f)
-	{
-		swap(this->particles[index], this->particles[this->nrOfActiveParticles - 1]);
-		swap(this->vertices[index], this->vertices[this->nrOfActiveParticles - 1]);
-		this->nrOfActiveParticles--;
-	}
-}
+
 template<typename T>
 void ParticleHandler::swap(T& p1, T& p2)
 {

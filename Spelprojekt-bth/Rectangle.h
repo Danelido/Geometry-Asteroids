@@ -15,7 +15,6 @@ public:
 
 	void update(float dt) override;
 	void render(sf::RenderWindow* window) override;
-
 };
 
 

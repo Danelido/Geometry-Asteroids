@@ -23,16 +23,11 @@ private:
 	Particle particles[MAX_PARTICLES];
 
 	sf::VertexArray vertices;
-	float particleLifetime;
-	float speed;
-
-	void checkIfDead(int index);
-	
-	template<typename T>
-	void swap(T& p1, T& p2);
-
 	bool debug;
 	CustomText info;
+
+	template<typename T>
+	void swap(T& p1, T& p2);
 
 public:
 	ParticleHandler();
