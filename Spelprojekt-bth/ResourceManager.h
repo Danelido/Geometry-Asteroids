@@ -20,8 +20,6 @@ public:
 	static void addFont(std::string id, std::string path);
 	static sf::Texture& getTexture(std::string id);
 	static sf::Font& getFont(std::string id);
-	static sf::Image getImage(std::string id);
-
 };
 
 #endif

@@ -52,12 +52,3 @@ sf::Font& ResourceManager::getFont(std::string id)
 	}
 	return fontMap[id];
 }
-
-sf::Image ResourceManager::getImage(std::string id)
-{
-	if (textureMap.find(id) == textureMap.end())
-	{
-		printf("Couldnt find texture with ID: %s\n", id.c_str());
-	}
-	return textureMap[id].copyToImage();
-}
