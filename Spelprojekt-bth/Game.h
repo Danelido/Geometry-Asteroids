@@ -11,6 +11,7 @@ private:
 	StateHandler stateHandler;
 
 	void initialize(unsigned int windowWidth, unsigned int windowHeight, std::string windowTitle);
+	void initializeResources();
 	void input();
 	void update(float dt);
 	void render();

@@ -58,6 +58,9 @@
     <Filter Include="Source Files\Ui">
       <UniqueIdentifier>{2ad625f1-5e90-42c4-8cd4-7d108b162d95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{e166c0f5-3860-4d8c-96aa-d922d8f9f774}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Circle.cpp">
@@ -110,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="ScoreState.cpp">
       <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="ScoreState.h">
       <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

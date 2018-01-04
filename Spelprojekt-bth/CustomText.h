@@ -8,7 +8,6 @@
 class CustomText
 {
 private:
-	sf::Font* font;
 	sf::Text* text;
 	bool isCentered;
 	sf::Vector2u windowSize;

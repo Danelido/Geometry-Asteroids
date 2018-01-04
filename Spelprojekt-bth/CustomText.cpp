@@ -1,17 +1,13 @@
 #include "CustomText.h"
 #include <iostream>
+#include "ResourceManager.h"
 
 CustomText::CustomText(std::string string, sf::Vector2f position, unsigned int fontSize, sf::Color color)
 {
-	this->font = new sf::Font();
-
-	if (!this->font->loadFromFile("Resources/Font/PajamaPants.ttf"))
-	{
-		std::printf("Failed to load font!");
-	}
+	
 
 	this->text = new sf::Text();
-	this->text->setFont(*this->font);
+	this->text->setFont(ResourceManager::getFont("StandardFont"));
 	this->text->setString(string);
 	this->text->setCharacterSize(fontSize);
 
@@ -25,7 +21,6 @@ CustomText::CustomText(std::string string, sf::Vector2f position, unsigned int f
 
 CustomText::~CustomText()
 {
-	delete this->font;
 	delete this->text;
 }
 

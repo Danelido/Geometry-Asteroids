@@ -5,9 +5,13 @@
 #include "Math.h"
 #include "ScoreState.h"
 #include <iostream>
+#include "ResourceManager.h"
 
 PlayState::PlayState(Game * game) :	State(game)
 {
+	this->background.setSize((sf::Vector2f)this->game->getWindow()->getSize());
+	this->background.setTexture(&ResourceManager::getTexture("Background"));
+
 	this->particleHandler = new ParticleHandler();
 	this->player = new Player(32.f, 100.f, this->game->getWindow()->getSize(), this->particleHandler);
 	this->player->setPosition((sf::Vector2f)this->game->getWindow()->getSize()/2.f);
@@ -96,6 +100,7 @@ void PlayState::update(float dt)
 
 void PlayState::render()
 {
+	this->game->getWindow()->draw(this->background);
 	this->projectionHandler->render(this->game->getWindow());
 	this->obstacleHandler->render(this->game->getWindow());
 	this->particleHandler->render(this->game->getWindow());
@@ -115,7 +120,7 @@ void PlayState::updateViewport()
 	this->player->updateViewport(this->game->getWindow()->getSize());
 	this->obstacleHandler->updateViewport(this->game->getWindow()->getSize());
 	this->projectionHandler->updateViewport(this->game->getWindow()->getSize());
-
+	this->background.setSize((sf::Vector2f)this->game->getWindow()->getSize());
 	// reposition game info text to the center of the screen
 	this->gameInfo.centerWithinBounds(sf::FloatRect(0.f, this->game->getWindow()->getSize().y / 2.f - 250,
 		(float)this->game->getWindow()->getSize().x, this->game->getWindow()->getSize().y / 2.f - 100));

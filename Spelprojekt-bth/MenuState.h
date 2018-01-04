@@ -12,6 +12,7 @@ private:
 	CustomButton* playButton;
 	CustomButton* scoreButton;
 	CustomButton* exitButton;
+	sf::RectangleShape background;
 
 	sf::Vector2i mousePos;
 public:

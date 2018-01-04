@@ -1,9 +1,11 @@
 #include "Triangle.h"
+#include "ResourceManager.h"
 
 Triangle::Triangle(float minRadius, float maxRadius, sf::Vector2u windowSize) :
 	Obstacle(minRadius,maxRadius,windowSize)
 {
 	this->radius = this->size / 2.f;
+	this->triangleShape.setTexture(&ResourceManager::getTexture("Triangle"));
 	this->triangleShape.setRadius(this->radius);
 	this->triangleShape.setOrigin(this->radius, this->radius);
 	this->triangleShape.setPointCount(3);

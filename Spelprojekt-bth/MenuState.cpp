@@ -3,12 +3,16 @@
 #include "PlayState.h"
 #include "ScoreState.h"
 #include <iostream>
+#include "ResourceManager.h"
 
 MenuState::MenuState(Game * game) : State(game)
 {
 	this->mousePos = sf::Vector2i(0, 0);
 	this->particleHandler = new ParticleHandler();
 	
+	this->background.setSize((sf::Vector2f)this->game->getWindow()->getSize());
+	this->background.setTexture(&ResourceManager::getTexture("Background"));
+
 	this->Title.setText("Asteroids but different");
 	this->Title.setColor(sf::Color::White);
 	this->Title.setTextSize(45);
@@ -104,6 +108,7 @@ void MenuState::update(float dt)
 
 void MenuState::render()
 {
+	this->game->getWindow()->draw(this->background);
 	this->particleHandler->render(this->game->getWindow());
 	this->game->getWindow()->draw(this->Title.getDrawable());
 	this->playButton->render(this->game->getWindow());
@@ -117,4 +122,5 @@ void MenuState::updateViewport()
 	this->playButton->setY(this->game->getWindow()->getSize().y / 2.f - 150);
 	this->scoreButton->setY(this->game->getWindow()->getSize().y / 2.f);
 	this->exitButton->setY(this->game->getWindow()->getSize().y / 2.f + 150);
+	this->background.setSize((sf::Vector2f)this->game->getWindow()->getSize());
 }

@@ -194,6 +194,7 @@ void CustomButton::makeEffect(float dt)
 		this->shape.setSize(this->size);
 		this->shape.setPosition(this->position);
 
+
 		for (int i = 0; i < 8; i++)
 		{
 

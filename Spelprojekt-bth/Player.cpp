@@ -2,6 +2,7 @@
 #include "ParticleHandler.h"
 #include <SFML/Window/Event.hpp>
 #include "Utility.h"
+#include "ResourceManager.h"
 
 Player::Player(float size, float health, sf::Vector2u windowSize, ParticleHandler* particleHandler)
 {
@@ -34,6 +35,7 @@ void Player::initiate()
 	this->isMoving = false;
 	this->color = sf::Color(0, 255, 0, 255);
 
+	this->playerShape.setTexture(&ResourceManager::getTexture("Triangle"));
 	this->playerShape.setPointCount(3);
 	this->playerShape.setOrigin(sf::Vector2f(this->size, this->size));
 	this->playerShape.setFillColor(this->color);
@@ -160,7 +162,6 @@ void Player::movementLogic(float dt)
 
 	// before updating position check if player still is inside the world, if not, reverse and decrease velocity
 	// This will make it more of a bouncy effect
-	// TODO: Get window size and simplify
 	if (this->position.x + this->size >= static_cast<float>(this->windowSize.x))
 	{
 		this->position.x = static_cast<float>(this->windowSize.x) - this->size;

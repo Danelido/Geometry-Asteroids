@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <cstdlib>
 #include <iostream>
+#include "ResourceManager.h"
 
 Game::Game(unsigned int windowWidth, unsigned int windowHeight, std::string windowTitle)
 {
@@ -56,6 +57,16 @@ void Game::initialize(unsigned int windowWidth, unsigned int windowHeight, std::
 	this->window = new sf::RenderWindow();
 	this->window->create(sf::VideoMode(windowWidth, windowHeight), windowTitle);
 	this->window->setFramerateLimit(60);
+	this->initializeResources();
+}
+
+void Game::initializeResources()
+{
+	ResourceManager::addFont("StandardFont", "Resources/Font/PajamaPants.ttf");
+	ResourceManager::addTexture("Quad", "Resources/Textures/Quad.png");
+	ResourceManager::addTexture("Circle", "Resources/Textures/Circle.png");
+	ResourceManager::addTexture("Triangle", "Resources/Textures/Triangle.png");
+	ResourceManager::addTexture("Background", "Resources/Textures/Background.png");
 }
 
 void Game::input()

@@ -15,7 +15,7 @@ private:
 	ProjectileHandler* projectionHandler;
 	ObstacleHandler* obstacleHandler;
 	sf::Vector2f mousePos;
-	
+	sf::RectangleShape background;
 	CustomText playerScoreText;
 	CustomText destroyedObstaclesText;
 	CustomText gameInfo;
