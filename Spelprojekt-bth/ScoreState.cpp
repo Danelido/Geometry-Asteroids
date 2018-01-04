@@ -3,12 +3,16 @@
 #include "MenuState.h"
 #include <fstream>
 #include <iostream>
+#include "ResourceManager.h"
 
 ScoreState::ScoreState(Game * game, int score) :
 	State(game)
 {
 	this->highScore = 0;
 	this->score = score;
+
+	this->background.setSize((sf::Vector2f)this->game->getWindow()->getSize());
+	this->background.setTexture(&ResourceManager::getTexture("Background"));
 
 	// Get highscore from file
 	this->getHighscoreFromFile("Resources/Data/highscore.txt");
@@ -139,6 +143,7 @@ void ScoreState::update(float dt)
 
 void ScoreState::render()
 {
+	this->game->getWindow()->draw(this->background);
 	this->particleHandler->render(this->game->getWindow());
 	if (this->score != 0) 
 	{
@@ -150,5 +155,6 @@ void ScoreState::render()
 
 void ScoreState::updateViewport()
 {
+	this->background.setSize((sf::Vector2f)this->game->getWindow()->getSize());
 	this->backToMenuButton->setY((float)(this->game->getWindow()->getSize().y / 2 + 150));
 }

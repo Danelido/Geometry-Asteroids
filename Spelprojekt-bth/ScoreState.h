@@ -12,7 +12,7 @@ private:
 	CustomText infoText;
 	ParticleHandler* particleHandler;
 	CustomButton * backToMenuButton;
-
+	sf::RectangleShape background;
 	sf::Vector2i mousePos;
 	int highScore;
 	int score;
